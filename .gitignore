@@ -1,4 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+src/**/*.js
+!src/systemjs.config.extras.js
+!src/systemjs.config.js
+!src/systemjs-angular-loader.js
 
 # compiled output
 /dist
@@ -30,13 +34,22 @@
 /coverage
 /libpeerconnection.log
 npm-debug.log
+debug.log
 testem.log
 /typings
 
 # e2e
-/e2e/*.js
-/e2e/*.map
+#/e2e/*.js
+#/e2e/*.map
+e2e/**/*.js
+e2e/**/*.js.map
 
 # System Files
 .DS_Store
 Thumbs.db
+
+jspm_packages
+*.js.map
+_test-output
+_temp
+*~
