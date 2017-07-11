@@ -53,3 +53,5 @@ jspm_packages
 _test-output
 _temp
 *~
+x*.png
+c*.jpg

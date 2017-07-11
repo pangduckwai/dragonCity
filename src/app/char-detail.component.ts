@@ -6,19 +6,29 @@ import { Character } from './character';
 	template: `
 	<div *ngIf="character">
 		<table>
-		<tr><td><label>Name: </label></td>             <td colspan="2"><input [(ngModel)]="character.name" placeholder="name"></td></tr>
-		<tr><td><label>Alter Ego: </label></td>        <td colspan="2"><input [(ngModel)]="character.altr" placeholder="alter ego"></td></tr>
-		<tr><td><label>Strength: </label></td>         <td><input type="range" min="0" max="9" [(ngModel)]="character.str"></td><td><label>{{character.str}}</label></td></tr>
-		<tr><td><label>Stamina: </label></td>          <td><input type="range" min="0" max="9" [(ngModel)]="character.sta"></td><td><label>{{character.sta}}</label></td></tr>
-		<tr><td><label>Intelligence: </label></td>     <td><input type="range" min="0" max="9" [(ngModel)]="character.int"></td><td><label>{{character.int}}</label></td></tr>
-		<tr><td><label>Perception: </label></td>       <td><input type="range" min="0" max="9" [(ngModel)]="character.pct"></td><td><label>{{character.pct}}</label></td></tr>
-		<tr><td><label>Dexterity: </label></td>        <td><input type="range" min="0" max="9" [(ngModel)]="character.dex"></td><td><label>{{character.dex}}</label></td></tr>
-		<tr><td><label>Luck: </label></td>             <td><input type="range" min="0" max="9" [(ngModel)]="character.lck"></td><td><label>{{character.lck}}</label></td></tr>
-		<tr><td><label>Charisma: </label></td>         <td><input type="range" min="0" max="9" [(ngModel)]="character.chr"></td><td><label>{{character.chr}}</label></td></tr>
-		<tr><td><label>Martial Art Skill: </label></td><td><input type="range" min="0" max="9" [(ngModel)]="character.mas"></td><td><label>{{character.mas}}</label></td></tr>
+		<tr><td><label>Name:</label></td>     <td colspan="2"><input [(ngModel)]="character.name" placeholder="name"></td></tr>
+		<tr><td><label>Alter Ego:</label></td><td colspan="2"><input [(ngModel)]="character.altr" placeholder="alter ego"></td></tr>
+		<tr><td colspan="3">&nbsp;</td></tr>
+		<tr><td><label>Strength:</label></td>    <td><input type="range" min="0" max="9" [(ngModel)]="character.str"></td><td class="e"><label>{{character.str}}</label></td></tr>
+		<tr><td><label>Stamina:</label></td>     <td><input type="range" min="0" max="9" [(ngModel)]="character.sta"></td><td class="e"><label>{{character.sta}}</label></td></tr>
+		<tr><td><label>Agility:</label></td>     <td><input type="range" min="0" max="9" [(ngModel)]="character.agt"></td><td class="e"><label>{{character.agt}}</label></td></tr>
+		<tr><td><label>Dexterity:</label></td>   <td><input type="range" min="0" max="9" [(ngModel)]="character.dex"></td><td class="e"><label>{{character.dex}}</label></td></tr>
+		<tr><td><label>Intelligence:</label></td><td><input type="range" min="0" max="9" [(ngModel)]="character.int"></td><td class="e"><label>{{character.int}}</label></td></tr>
+		<tr><td><label>Perception:</label></td>  <td><input type="range" min="0" max="9" [(ngModel)]="character.pct"></td><td class="e"><label>{{character.pct}}</label></td></tr>
+		<tr><td><label>Willpower:</label></td>   <td><input type="range" min="0" max="9" [(ngModel)]="character.wil"></td><td class="e"><label>{{character.wil}}</label></td></tr>
+		<tr><td><label>Luck:</label></td>        <td><input type="range" min="0" max="9" [(ngModel)]="character.lck"></td><td class="e"><label>{{character.lck}}</label></td></tr>
+		<tr><td><label>Charisma:</label></td>    <td><input type="range" min="0" max="9" [(ngModel)]="character.chr"></td><td class="e"><label>{{character.chr}}</label></td></tr>
+		<tr><td colspan="3">&nbsp;</td></tr>
+		<tr><td><label>Melee skill:</label></td>  <td><input type="range" min="0" max="99" [(ngModel)]="character.mele"></td><td class="e"><label>{{character.mele}}</label></td></tr>
+		<tr><td><label>Archery skill:</label></td><td><input type="range" min="0" max="99" [(ngModel)]="character.arch"></td><td class="e"><label>{{character.arch}}</label></td></tr>
+		<tr><td><label>Marksmanship:</label></td> <td><input type="range" min="0" max="99" [(ngModel)]="character.mark"></td><td class="e"><label>{{character.mark}}</label></td></tr>
 		</table>
-	</div>
-	`
+	</div>`,
+	styles: [`
+		.e {
+			text-align: right;
+		}
+	`]
 })
 
 export class CharDetailComponent {

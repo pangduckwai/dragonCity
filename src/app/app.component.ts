@@ -6,19 +6,26 @@ import { Character } from './character';
 	template: `
 	<h1>{{title}}</h1>
 	<h2>Characters</h2>
-	<ul class="heroes">
-		<li *ngFor="let indv of chars" [class.selected]="indv === selectedChar" (click)="onSelect(indv)">
-			<span class="badge">{{('0' + indv.id).slice(-2)}}</span> {{indv.name}}
-		</li>
-	</ul>
-	<char-detail [character]="selectedChar"></char-detail>
-	`,
+	<div style="display:flex;">
+		<ul class="heroes">
+			<li *ngFor="let indv of chars" [class.selected]="indv === selectedChar" (click)="onSelect(indv)">
+				<span class="badge">{{('00' + indv.id).slice(-3)}}</span> {{indv.name}}
+			</li>
+		</ul>
+		<div style="flex:2;">
+			<char-detail [character]="selectedChar"></char-detail>
+		</div>
+		<div style="flex:4;">
+			<img src="/assets/img/c{{('00' + selectedChar.id).slice(-3)}}.jpg" width="560" alt=" "/>
+		</div>
+	</div>`,
 	styles: [`
 		.selected {
 			background-color: #CFD8DC !important;
 			color: white;
 		}
 		.heroes {
+			flex: 1;
 			margin: 0 0 2em 0;
 			list-style-type: none;
 			padding: 0;
@@ -64,7 +71,6 @@ import { Character } from './character';
 	`]
 })
 
-
 export class AppComponent  {
 	title = 'The tales of Dragon City';
 
@@ -77,15 +83,16 @@ export class AppComponent  {
 }
 
 const CHARS: Character[] = [
-	{id:1, name:'Lady Pteropus',altr:'Rachel Ross',         str:3,sta:4,int:9,pct:6,dex:8,lck:3,mas:7,chr:9},
-	{id:2, name:'T.J.',         altr:'Trish Josée Michaels',str:4,sta:6,int:6,pct:7,dex:8,lck:6,mas:8,chr:8},
-	{id:3, name:'Lee',                                      str:8,sta:8,int:5,pct:6,dex:9,lck:7,mas:9,chr:7},
-	{id:4, name:'Greg',         altr:'Greg Michaels',       str:5,sta:6,int:8,pct:8,dex:6,lck:7,mas:4,chr:8},
-	{id:5, name:'The Colonel',                              str:5,sta:7,int:7,pct:7,dex:6,lck:6,mas:5,chr:7},
-	{id:10,name:'The Captain',  altr:'Gordon Ramses',       str:6,sta:7,int:7,pct:6,dex:6,lck:5,mas:6,chr:7},
-	{id:11,name:'The Drug Lord',                            str:5,sta:5,int:7,pct:7,dex:5,lck:7,mas:4,chr:5},
-	{id:12,name:'Mr Beast',                                 str:9,sta:6,int:3,pct:4,dex:5,lck:5,mas:6,chr:2},
-	{id:13,name:'Mal Function', altr:'Malcolm Fung',        str:7,sta:6,int:4,pct:5,dex:5,lck:5,mas:6,chr:3},
-	{id:14,name:'Thug A',       altr:'Joe Net',             str:7,sta:6,int:4,pct:5,dex:5,lck:5,mas:5,chr:3},
-	{id:15,name:'Thug B',       altr:'Seven Jung',          str:6,sta:7,int:5,pct:4,dex:5,lck:5,mas:5,chr:3},
+	{id:1, name:'Lady Pteropus',altr:'Rachel Ross',         str:3,sta:4,agt:9,dex:8,int:9,pct:6,wil:8,lck:3,chr:9,mele:77,arch:20,mark:75},
+	{id:2, name:'T.J.',         altr:'Trish Josié Michaels',str:4,sta:6,agt:8,dex:8,int:6,pct:7,wil:7,lck:6,chr:8,mele:85,arch:70,mark:82},
+	{id:3, name:'Lee',                                      str:8,sta:8,agt:7,dex:9,int:5,pct:6,wil:7,lck:7,chr:7,mele:94,arch:80,mark:77},
+	{id:4, name:'Greg',         altr:'Greg Michaels',       str:5,sta:6,agt:5,dex:6,int:8,pct:8,wil:8,lck:7,chr:8,mele:40,arch:90,mark:95},
+	{id:5, name:'The Colonel',                              str:5,sta:7,agt:6,dex:6,int:7,pct:7,wil:7,lck:6,chr:7,mele:50,arch:80,mark:90},
+	{id:10,name:'The Captain',  altr:'Gordon Ramses',       str:6,sta:7,agt:7,dex:6,int:7,pct:6,wil:6,lck:5,chr:7,mele:60,arch:63,mark:80},
+	{id:11,name:'Lord Pteropus',altr:'Dominic Smith',       str:9,sta:7,agt:8,dex:8,int:5,pct:7,wil:9,lck:5,chr:5,mele:90,arch:90,mark:87},
+	{id:20,name:'The Drug Lord',                            str:5,sta:5,agt:5,dex:5,int:7,pct:7,wil:7,lck:7,chr:5,mele:40,arch:30,mark:50},
+	{id:21,name:'Mr Beast',                                 str:9,sta:6,agt:4,dex:5,int:3,pct:4,wil:5,lck:5,chr:2,mele:60,arch:15,mark:40},
+	{id:22,name:'Mal Function', altr:'Malcolm Fung',        str:7,sta:6,agt:6,dex:5,int:4,pct:5,wil:6,lck:5,chr:3,mele:60,arch:70,mark:80},
+	{id:23,name:'Thug A',       altr:'Joe Net',             str:7,sta:6,agt:5,dex:5,int:4,pct:5,wil:5,lck:5,chr:3,mele:50,arch:60,mark:50},
+	{id:24,name:'Thug B',       altr:'Seven Jung',          str:6,sta:7,agt:5,dex:5,int:5,pct:4,wil:5,lck:5,chr:3,mele:50,arch:30,mark:70},
 ];
