@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Character } from './character';
+import * as d3 from 'd3';
 
 @Component({
 	selector: 'dragon-city',
@@ -8,7 +9,7 @@ import { Character } from './character';
 	<h2>Characters</h2>
 	<div style="display:flex;">
 		<ul class="heroes">
-			<li *ngFor="let indv of chars" [class.selected]="indv === selectedChar" (click)="onSelect(indv)">
+			<li *ngFor="let indv of chars" [class.selected]="indv === selectedChar" [id]="indv.id" (click)="onSelect(indv)">
 				<span class="badge">{{('00' + indv.id).slice(-3)}}</span> {{indv.name}}
 			</li>
 		</ul>
@@ -71,7 +72,7 @@ import { Character } from './character';
 	`]
 })
 
-export class AppComponent  {
+export class AppComponent implements OnInit {
 	title = 'The tales of Dragon City';
 
 	selectedChar: Character;
@@ -79,6 +80,16 @@ export class AppComponent  {
 
 	onSelect(selected: Character): void {
 		this.selectedChar = selected;
+	}
+
+	ngOnInit() {
+		for (let char of this.chars) {
+			let gph = d3.select("#" + char.id).select(".viz");
+			if (gph.empty()) {
+				gph = d3.select("#" + char.id).append("svg").attr("class", "viz");
+			}
+			gph.append("text").attr("font-size", "0.8em").text(char.altr);
+		}
 	}
 }
 
