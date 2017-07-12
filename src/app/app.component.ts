@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewChecked } from '@angular/core';
 import { Character } from './character';
 import * as d3 from 'd3';
 
@@ -9,15 +9,19 @@ import * as d3 from 'd3';
 	<h2>Characters</h2>
 	<div style="display:flex;">
 		<ul class="heroes">
-			<li *ngFor="let indv of chars" [class.selected]="indv === selectedChar" [id]="indv.id" (click)="onSelect(indv)">
-				<span class="badge">{{('00' + indv.id).slice(-3)}}</span> {{indv.name}}
+			<li *ngFor="let indv of chars"
+					[class.selected]="indv === selectedChar"
+					[id]="'c' + ('00' + indv.id).slice(-3)"
+					(click)="onSelect(indv)">
+				<span class="badge">{{('00' + indv.id).slice(-3)}}</span>
+				{{indv.name}}
 			</li>
 		</ul>
-		<div style="flex:2;">
-			<char-detail [character]="selectedChar"></char-detail>
+		<div style="flex:4;text-align:center;">
+			<img src="/assets/img/c{{('00' + selectedChar.id).slice(-3)}}.jpg" width="520" alt=" " *ngIf="selectedChar"/>
 		</div>
-		<div style="flex:4;">
-			<img src="/assets/img/c{{('00' + selectedChar.id).slice(-3)}}.jpg" width="560" alt=" "/>
+		<div style="flex:3;">
+			<char-detail [character]="selectedChar" *ngIf="selectedChar"></char-detail>
 		</div>
 	</div>`,
 	styles: [`
@@ -26,7 +30,7 @@ import * as d3 from 'd3';
 			color: white;
 		}
 		.heroes {
-			flex: 1;
+			flex: 2;
 			margin: 0 0 2em 0;
 			list-style-type: none;
 			padding: 0;
@@ -72,7 +76,7 @@ import * as d3 from 'd3';
 	`]
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewChecked {
 	title = 'The tales of Dragon City';
 
 	selectedChar: Character;
@@ -82,13 +86,37 @@ export class AppComponent implements OnInit {
 		this.selectedChar = selected;
 	}
 
-	ngOnInit() {
+	ngAfterViewChecked() {
 		for (let char of this.chars) {
-			let gph = d3.select("#" + char.id).select(".viz");
-			if (gph.empty()) {
-				gph = d3.select("#" + char.id).append("svg").attr("class", "viz");
+			this.renderStat(char);
+		}
+	}
+
+	ATTRS = ['str','sta','agt','dex','int','pct','wil','lck','chr', '-', 'mele', 'arch', 'mark'];
+	renderStat(char: Character) {
+		let iid = ('00' + char.id).slice(-3);
+
+		let grph = d3.select("#c"+iid).select(".viz");
+		if (grph.empty()) {
+			grph = d3.select("#c"+iid)
+				.append("svg").attr("class", "viz").attr("id", "s"+iid)
+				.style("float", "right").style("max-width", "77px").style("height", "1.7em");
+		}
+
+		let size = document.getElementById("s"+iid).getBoundingClientRect();
+		let scaleX = d3.scalePoint().range([0, size.width - 5]).domain(this.ATTRS);
+		let scaleY = d3.scaleLinear().range([size.height, 0]).domain([0, 9]);
+		let scaleZ = d3.scaleLinear().range([size.height, 0]).domain([0, 99]);
+
+		for (let attr of this.ATTRS) {
+			if (attr == '-') continue;
+			let ypos = (attr.length > 3) ? scaleZ(char[attr]) : scaleY(char[attr]);
+			let bar = grph.select("."+attr);
+			if (bar.empty()) {
+				bar = grph.append("rect").attr("class", attr).attr("x", scaleX(attr)).attr("width", "5")
+					.style("fill", ((attr.length > 3) ? "#777777" : "#607D8B"));
 			}
-			gph.append("text").attr("font-size", "0.8em").text(char.altr);
+			bar.attr("y", ypos).attr("height", size.height - ypos);
 		}
 	}
 }
