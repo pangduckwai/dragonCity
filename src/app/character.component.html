@@ -1,6 +1,6 @@
-<h3 *ngIf="character">{{character.name | uppercase}}</h3>
+<h2 *ngIf="character">{{character.name | uppercase}}</h2>
 <div style="display:flex;">
-	<div style="flex:none;width:500px;text-align:left;" *ngIf="character">
+	<div style="flex:none;width:540px;text-align:left;" *ngIf="character">
 		<char-image
 			[character]="character"
 			[extension]="'jpg'"
