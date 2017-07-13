@@ -19,3 +19,7 @@ export class Character {
 	arch: number; //Archery skill
 	mark: number; //Marksmanship skill
 }
+
+export const ATTRIBUTES: string[] = [
+	'str', 'sta', 'agt', 'dex', 'int', 'pct', 'wil', 'lck', 'chr', 'mele', 'arch', 'mark'
+];
