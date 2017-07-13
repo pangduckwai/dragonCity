@@ -1,17 +1,19 @@
-import { Component, Input, AfterViewChecked } from '@angular/core';
+import { Component, Input, AfterViewChecked, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 
 import { Character, ATTRIBUTES } from './character';
-import { CharacterService } from './character.service';
 
 @Component({
 	selector: 'char-chart',
 	templateUrl: './character-chart.component.html',
-	styleUrls: [ './character-chart.component.css' ]
+	styleUrls: [ './character-chart.component.css' ],
+	encapsulation: ViewEncapsulation.None
 })
 
 export class CharacterChartComponent implements AfterViewChecked {
 	@Input() character: Character;
+	@Input() clazzAttr: string;
+	@Input() clazzSkll: string;
 
 	ngAfterViewChecked(): void {
 		this.renderStat(this.character);
@@ -30,10 +32,11 @@ export class CharacterChartComponent implements AfterViewChecked {
 			if (attr == '-') continue;
 			let ypos = (attr.length > 3) ? scaleZ(char[attr]) : scaleY(char[attr]);
 			let offs = (attr.length > 3) ? 3 : 0;
+			let clss = (attr.length > 3) ? this.clazzSkll : this.clazzAttr;
 			let bar = grph.select("."+attr);
 			if (bar.empty()) {
-				bar = grph.append("rect").attr("class", attr).attr("x", scaleX(attr) + offs).attr("width", "5")
-					.style("fill", ((attr.length > 3) ? "#777777" : "#607D8B"));
+				bar = grph.append("rect").attr("class", clss + " " + attr)
+					.attr("x", scaleX(attr) + offs).attr("width", "5");
 			}
 			bar.attr("y", ypos).attr("height", 27 - ypos);
 		}

@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard.component';
 import { CharactersComponent } from './characters.component';
 import { CharacterComponent } from './character.component';
 import { CharacterDetailComponent } from './character-detail.component';
+import { CharacterImageComponent } from './character-image.component';
 import { CharacterChartComponent } from './character-chart.component';
 import { CharacterService } from './character.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 		CharactersComponent,
 		CharacterComponent,
 		CharacterDetailComponent,
+		CharacterImageComponent,
 		CharacterChartComponent ],
 	providers:    [ CharacterService ],
 	bootstrap:    [ AppComponent ]

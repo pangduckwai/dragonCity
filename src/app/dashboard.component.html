@@ -4,7 +4,10 @@
 		[id]="'c' + ('00' + char.id).slice(-3)" class="col-1-4">
 		<div class="module hero">
 			<h4>{{char.name}}</h4>
-			<char-chart [character]="char"></char-chart>
+			<char-chart
+				[character]="char"
+				[clazzAttr]="'dark'"
+				[clazzSkll]="'dark'"></char-chart>
 		</div>
 	</a>
 </div>

@@ -15,6 +15,6 @@ export class DashboardComponent implements OnInit {
 	constructor(private characterService: CharacterService) { }
 
 	ngOnInit(): void {
-		this.characterService.getCharacters().then(chars => this.chars = chars.slice(0, 12));
+		this.characterService.getCharacters().then(chars => this.chars = chars);
 	}
 }
