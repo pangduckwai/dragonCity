@@ -2,15 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'dragon-city',
-	template: `
-	<h1>{{title}}</h1>
-	<nav>
-		<a routerLink="/dashboard">Dashboard</a>
-		<a routerLink="/characters">Characters</a>
-	</nav>
-	<div>
-		<router-outlet></router-outlet>
-	</div>`
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.css']
 })
 
 export class AppComponent {

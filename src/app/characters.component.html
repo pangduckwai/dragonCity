@@ -1,0 +1,19 @@
+<div style="display:flex">
+	<ul class="heroes">
+		<li *ngFor="let indv of chars"
+				[class.selected]="indv === selectedChar"
+				[id]="'c' + ('00' + indv.id).slice(-3)"
+				(click)="onSelect(indv)">
+			<span class="badge">{{('00' + indv.id).slice(-3)}}</span>{{indv.name}}
+			<char-chart style="float:right;"
+				[character]="indv"
+				(click)="onEdit(indv)"></char-chart>
+		</li>
+	</ul>
+	<div style="flex:none;width:400px;margin-top:1em;">
+		<img src="/assets/img/c{{('00' + selectedChar.id).slice(-3)}}.png" width="400" alt=" " *ngIf="selectedChar"/>
+	</div>
+	<div style="flex:1;margin-left:2em;margin-top:1em;">
+		<char-detail [character]="selectedChar"></char-detail>
+	</div>
+</div>

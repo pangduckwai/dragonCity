@@ -6,6 +6,7 @@ import { CharacterService } from './character.service';
 @Component({
 	selector: 'dc-dashboard',
 	templateUrl: './dashboard.component.html',
+	styleUrls: [ './dashboard.component.css' ]
 })
 
 export class DashboardComponent implements OnInit {
@@ -14,6 +15,6 @@ export class DashboardComponent implements OnInit {
 	constructor(private characterService: CharacterService) { }
 
 	ngOnInit(): void {
-		this.characterService.getCharacters().then(chars => this.chars = chars.slice(0, 4));
+		this.characterService.getCharacters().then(chars => this.chars = chars.slice(0, 12));
 	}
 }

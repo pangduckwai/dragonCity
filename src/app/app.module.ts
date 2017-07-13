@@ -3,15 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 
 import { AppComponent }  from './app.component';
-import { CharactersComponent } from './characters.component';
-import { CharacterDetailComponent } from './character-detail.component';
-import { CharacterService } from './character.service';
 import { DashboardComponent } from './dashboard.component';
+import { CharactersComponent } from './characters.component';
+import { CharacterComponent } from './character.component';
+import { CharacterDetailComponent } from './character-detail.component';
+import { CharacterChartComponent } from './character-chart.component';
+import { CharacterService } from './character.service';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
 	imports: [ BrowserModule, FormsModule, AppRoutingModule ],
-	declarations: [ AppComponent, DashboardComponent, CharactersComponent, CharacterDetailComponent ],
+	declarations: [
+		AppComponent,
+		DashboardComponent,
+		CharactersComponent,
+		CharacterComponent,
+		CharacterDetailComponent,
+		CharacterChartComponent ],
 	providers:    [ CharacterService ],
 	bootstrap:    [ AppComponent ]
 })

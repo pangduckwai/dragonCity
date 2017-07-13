@@ -1,15 +1,15 @@
 import { NgModule }      from '@angular/core';
 import { RouterModule, Routes }   from '@angular/router';
 
-import { CharactersComponent } from './characters.component';
-import { CharacterDetailComponent } from './character-detail.component';
 import { DashboardComponent } from './dashboard.component';
+import { CharactersComponent } from './characters.component';
+import { CharacterComponent } from './character.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 	{ path: 'dashboard',  component: DashboardComponent },
 	{ path: 'characters', component: CharactersComponent },
-	{ path: 'detail/:id', component: CharacterDetailComponent }
+	{ path: 'detail/:id', component: CharacterComponent }
 ];
 
 @NgModule({

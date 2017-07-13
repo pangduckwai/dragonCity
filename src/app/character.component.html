@@ -1,0 +1,10 @@
+<h3 *ngIf="character">{{character.name | uppercase}}</h3>
+<div style="display:flex;">
+	<div style="flex:3;text-align:left;" *ngIf="character">
+		<img src="/assets/img/c{{('00' + character.id).slice(-3)}}.png" width="500" alt=" "/>
+	</div>
+	<div style="flex:2;" *ngIf="character">
+		<char-detail [character]="character"></char-detail>
+		<button (click)="goBack()">Back</button>
+	</div>
+</div>
