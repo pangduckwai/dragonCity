@@ -18,6 +18,9 @@ import { CharacterImageComponent } from './character-image.component';
 import { CharacterChartComponent } from './character-chart.component';
 import { CharacterService } from './character.service';
 
+import { CharacterSearchComponent } from './character-search.component';
+import { CharacterSearchService } from './character-search.service';
+
 @NgModule({
 	imports: [
 		BrowserModule,
@@ -32,8 +35,9 @@ import { CharacterService } from './character.service';
 		CharacterComponent,
 		CharacterDetailComponent,
 		CharacterImageComponent,
-		CharacterChartComponent ],
-	providers:    [ CharacterService ],
+		CharacterChartComponent,
+		CharacterSearchComponent ],
+	providers:    [ CharacterService, CharacterSearchService ],
 	bootstrap:    [ AppComponent ]
 })
 

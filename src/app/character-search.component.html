@@ -1,0 +1,10 @@
+<div id="search-component">
+	<h4>Character Search</h4>
+	<input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+	<div>
+		<div *ngFor="let char of chars | async"
+			(click)="gotoDetail(char)" class="search-result" >
+			{{char.name}}
+		</div>
+	</div>
+</div>
