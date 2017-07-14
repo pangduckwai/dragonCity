@@ -1,13 +1,13 @@
-<h2 *ngIf="character">{{character.name | uppercase}}</h2>
+<h2 *ngIf="character">{{((character.name !== '') ? character.name : 'New character') | uppercase}}</h2>
 <div style="display:flex;">
-	<div style="flex:none;width:540px;text-align:left;" *ngIf="character">
+	<div style="flex:none;width:540px;text-align:left;">
 		<char-image
 			[character]="character"
-			[extension]="'jpg'"
 			[width]="540"></char-image>
 	</div>
-	<div style="flex:2;" *ngIf="character">
+	<div style="flex:2;margin-left:2em;">
 		<char-detail [character]="character"></char-detail>
 		<button (click)="goBack()">Back</button>
+		<button (click)="save()">Save</button>
 	</div>
 </div>

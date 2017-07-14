@@ -38,4 +38,11 @@ export class CharactersComponent implements OnInit {
 	getCharacters(): void {
 		this.characterService.getCharacters().then(chars => this.chars = chars);
 	}
+
+	delete(char: Character): void {
+		this.characterService.delete(char.id).then(() => {
+			this.chars = this.chars.filter(h => h !== char);
+			if (this.selectedChar === char) { this.selectedChar = null; }
+		});
+	}
 }

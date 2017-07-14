@@ -5,20 +5,18 @@
 				[id]="'c' + ('00' + indv.id).slice(-3)"
 				(click)="onSelect(indv)">
 			<span class="badge">{{('00' + indv.id).slice(-3)}}</span>{{indv.name}}
-			<char-chart style="float:right;"
-				[character]="indv"
-				[clazzAttr]="'attr'"
-				[clazzSkll]="'skll'"
-				(click)="onEdit(indv)"></char-chart>
+			<button class="delete" (click)="delete(indv); $event.stopPropagation()">x</button>
+			<char-chart style="float:right;" [character]="indv" (click)="onEdit(indv)"></char-chart>
 		</li>
 	</ul>
 	<div style="flex:none;width:400px;margin-top:1em;">
 		<char-image
 			[character]="selectedChar"
-			[extension]="'jpg'"
 			[width]="400"></char-image>
 	</div>
 	<div style="flex:1;margin-left:2em;margin-top:1em;">
-		<char-detail [character]="selectedChar"></char-detail>
+		<char-detail
+			[character]="selectedChar"
+			[readOnly]="true"></char-detail>
 	</div>
 </div>

@@ -9,6 +9,5 @@ import { Character } from './character';
 
 export class CharacterImageComponent {
     @Input() character: Character;
-    @Input() extension: string;
-    @Input() width: number;
+    @Input() width: number = -1;
 }

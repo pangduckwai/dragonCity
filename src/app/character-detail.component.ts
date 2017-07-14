@@ -10,4 +10,5 @@ import { Character } from './character';
 
 export class CharacterDetailComponent {
 	@Input() character: Character;
+	@Input() readOnly: boolean = false;
 }

@@ -12,8 +12,8 @@ import { Character, ATTRIBUTES } from './character';
 
 export class CharacterChartComponent implements AfterViewChecked {
 	@Input() character: Character;
-	@Input() clazzAttr: string;
-	@Input() clazzSkll: string;
+	@Input() clazzAttr: string = "attr";
+	@Input() clazzSkll: string = "skll";
 
 	ngAfterViewChecked(): void {
 		this.renderStat(this.character);
