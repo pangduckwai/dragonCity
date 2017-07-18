@@ -23,6 +23,7 @@ export class CharacterImageComponent {
 				return `/assets/img/c${cid}-${nxt}.png`;
 			} else {
 				console.log("Getting image of ", this.character.id);
+				this.characterImageService.trigger(this.character.id);
 				return `/assets/img/c${cid}.png`;
 			}
 		} else {
@@ -30,24 +31,20 @@ export class CharacterImageComponent {
 		}
 	}
 
-	onLoad() {
-		console.log("Loaded image of ", this.character.id);
-//		if (this.characterImageService.displayed.has(this.character.id)) {
-//			this.characterImageService.next(this.character);
-//		}
-//		this.cdr.detach();
+	onLoad(event) {
+		event.stopPropagation();
+		// console.log("Loaded image of ", this.character.id);
+		// if (this.characterImageService.displayed.has(this.character.id)) {
+		// 	this.characterImageService.next(this.character.id).then(() => null);
+		// }
 	}
 
 	onErr() {
 		console.log("Image not found for ", this.character.id);
 		if (this.characterImageService.displayed.has(this.character.id)) {
-			console.log("Moving to next image of ", this.character.id);
-			let nxt = this.characterImageService.displayed.get(this.character.id) + 1;
-			if (nxt > 9) nxt = 0;
-			this.characterImageService.displayed.set(this.character.id, nxt);
-		} else {
-			console.log("Getting first image of ", this.character.id);
 			this.characterImageService.displayed.set(this.character.id, 0);
+		} else {
+			this.characterImageService.next(this.character.id).then(() => null);
 		}
 	}
 }
