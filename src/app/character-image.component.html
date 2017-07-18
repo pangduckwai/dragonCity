@@ -1,4 +1,6 @@
 <img
-	src="/assets/img/c{{(character.id >= 0) ? ('00' + character.id).slice(-3) : 'new'}}.jpg"
 	[attr.width]="(width > 0) ? width : null"
+	[src]="getUrl()"
+	(load)="onLoad()"
+	(error)="onErr()"
 	alt="Image of {{character.name}}" *ngIf="character"/>

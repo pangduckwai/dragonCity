@@ -17,6 +17,7 @@ import { CharacterDetailComponent } from './character-detail.component';
 import { CharacterImageComponent } from './character-image.component';
 import { CharacterChartComponent } from './character-chart.component';
 import { CharacterService } from './character.service';
+import { CharacterImageService } from './character-image.service';
 
 import { CharacterSearchComponent } from './character-search.component';
 import { CharacterSearchService } from './character-search.service';
@@ -37,7 +38,7 @@ import { CharacterSearchService } from './character-search.service';
 		CharacterImageComponent,
 		CharacterChartComponent,
 		CharacterSearchComponent ],
-	providers:    [ CharacterService, CharacterSearchService ],
+	providers:    [ CharacterService, CharacterImageService, CharacterSearchService ],
 	bootstrap:    [ AppComponent ]
 })
 
