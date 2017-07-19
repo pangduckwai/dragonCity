@@ -1,6 +1,5 @@
 <img
 	[attr.width]="(width > 0) ? width : null"
+	[cid]="getCid()"
 	[src]="getUrl()"
-	(load)="onLoad($event)"
-	(error)="onErr()"
 	alt="Image of {{character.name}}" *ngIf="character"/>
